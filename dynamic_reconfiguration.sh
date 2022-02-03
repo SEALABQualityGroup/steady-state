@@ -1,5 +1,4 @@
-
-# REPLICATIONPACKAGE_PATH=/Users/luca/Developer/repos/replication_package_fse20_laaber #put the replication package path here
+#!/bin/bash
 
 CSV_DATA=$PWD/data/jmh_dyre
 RESULTS=$PWD/data/results_dyre
