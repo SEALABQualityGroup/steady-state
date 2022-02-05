@@ -1,6 +1,6 @@
 # Towards effective assessment of steady state performance in Java software: Are we there yet?
 
-Replication package of the work *Towards effective assessment of steady state performance in Java software: Are we there yet?*".
+Replication package of the work ‟*Towards effective assessment of steady state performance in Java software: Are we there yet?* ”.
 
 **Requirements**
 - Python 3.6
