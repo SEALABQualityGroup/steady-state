@@ -14,9 +14,9 @@ pip install -r requirements.txt
 ```
 
 ### Microbenchmarks
-The complete list of the considered benchmarks is available in `data/subjects.csv`.
-Each row of the csv file reports the benchmark signature (i.e., the name of the JMH benchmark method), the system the benchmark belongs to, the parameterization used during execution, and the JMH configuration defined software developers.
-Each JMH configuration is defined by: *warmup iteration time* (w), *measurement iteration time* (r), *warmup iterations* (wi), *measurement iterations* (i), and *forks* (f).
+The complete list of the benchmarks considered in our empirical study is available in `data/subjects.csv`.
+Each row of the csv file reports the benchmark signature (i.e., the name of the JMH benchmark method), the system the benchmark belongs to, the parameterization used during execution, and the JMH configuration defined by software developers.
+Each JMH configuration is constituted by: *warmup iteration time* (w), *measurement iteration time* (r), *warmup iterations* (wi), *measurement iterations* (i), and *forks* (f).
 
 
 ### Performance measurements
