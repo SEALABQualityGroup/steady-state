@@ -17,22 +17,26 @@ def toseries(fork, scoreUnit):
     series = map(lambda x: tosec(x, scoreUnit), series)
     return list(series)
 
-for path in glob("{}/*.json".format(folder_path)):
-    out_path = "{}/{}".format(timeseries_folder, path.split('/')[-1])
-    if os.path.exists(out_path):
-        print('Skipped:', out_path, 'already exists')
-        continue
 
-    try:
-        with open(path) as f:
-            data = json.load(f)
-            rawDataHistogram = data[0]['primaryMetric']['rawDataHistogram']
-            scoreUnit = data[0]['primaryMetric']['scoreUnit']
-            timeseries = [toseries(fork, scoreUnit) for fork in rawDataHistogram]
+def create_timeseries():
+    for path in glob("{}/*.json".format(folder_path)):
+        out_path = "{}/{}".format(timeseries_folder, path.split('/')[-1])
+        if os.path.exists(out_path):
+            print('Skipped:', out_path, 'already exists')
+            continue
 
-        with open(out_path, mode='w') as f:
-            json.dump(timeseries, f)
+        try:
+            with open(path) as f:
+                data = json.load(f)
+                rawDataHistogram = data[0]['primaryMetric']['rawDataHistogram']
+                scoreUnit = data[0]['primaryMetric']['scoreUnit']
+                timeseries = [toseries(fork, scoreUnit) for fork in rawDataHistogram]
 
-    except json.JSONDecodeError:
-        print('Skipped', path, 'for JSONDecodeError')
+            with open(out_path, mode='w') as f:
+                json.dump(timeseries, f)
 
+        except json.JSONDecodeError:
+            print('Skipped', path, 'for JSONDecodeError')
+
+if __name__ == '__main__':
+    create_timeseries()

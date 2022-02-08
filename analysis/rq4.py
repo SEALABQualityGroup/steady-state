@@ -3,6 +3,7 @@ from bisect import bisect_left, bisect_right
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
+from matplotlib.patches import Rectangle
 from scipy.stats import wilcoxon, rankdata
 import os
 
@@ -167,6 +168,9 @@ def write_summary_results(results, score):
     sns.heatmap(pd.DataFrame(rows, columns=columns, index=techniques_labels),
                 annot=True, cmap='Greys', cbar=False, vmin=0, vmax=18, linewidths=0.05, linecolor='gray',
                 ax=ax)
+
+    ax.add_patch(Rectangle((0,0), 4, 3, ec='dimgray', fc='none', lw=2))
+    ax.add_patch(Rectangle((4, 0), 4, 3, ec='dimgray', fc='none', lw=2))
 
     ax.set_yticks([y - 0.2 for y in ax.get_yticks()])
     ax.set_yticklabels([item.get_text() for item in ax.get_yticklabels()])

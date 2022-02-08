@@ -39,7 +39,7 @@ def filter_(fork):
     return np.setdiff1d(indexes, outliers).tolist()
 
 
-def main(data_dir, filtered_dir):
+def _filter_outliers(data_dir, filtered_dir):
     for path in glob('{}/*.json'.format(data_dir)):
         filename = path.split('/')[-1]
         filtered_path = '{}/{}'.format(filtered_dir, filename)
@@ -57,8 +57,7 @@ def main(data_dir, filtered_dir):
             except json.JSONDecodeError:
                 print('Skipped {}'.format(path))
 
-
-if __name__ == '__main__':
+def filter_outliers():
     root_dir = './data/timeseries'
     data_dir = '{}/all'.format(root_dir)
     filtered_dir = '{}/filtered'.format(root_dir)
@@ -66,4 +65,7 @@ if __name__ == '__main__':
     if not os.path.exists(filtered_dir):
         os.mkdir(filtered_dir)
 
-    main(data_dir, filtered_dir)
+    _filter_outliers(data_dir, filtered_dir)
+
+if __name__ == '__main__':
+    filter_outliers()

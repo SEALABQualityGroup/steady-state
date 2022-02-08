@@ -1,1 +1,1 @@
-{"run": "inconsistent", "forks": ["steady state", "no steady state", "steady state", "steady state", "steady state", "steady state", "steady state", "steady state", "steady state", "steady state"], "steady_state_starts": [362, 2884, 280, 176, 714, 407, 3, 1, 470, 209]}
+{"run": "inconsistent", "forks": ["steady state", "no steady state", "steady state", "steady state", "steady state", "steady state", "steady state", "steady state", "steady state", "steady state"], "steady_state_starts": [362, -1, 280, 176, 714, 407, 3, 1, 470, 209]}

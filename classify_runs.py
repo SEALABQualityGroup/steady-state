@@ -7,10 +7,12 @@ STEADY_STATE = "steady state"
 NO_STEADY_STATE = "no steady state"
 INCONSISTENT = "inconsistent"
 
+
 def load(path):
     with open(path) as f:
         data = json.load(f)
     return data
+
 
 def write(data, path):
     with open(path, 'w') as f:
@@ -35,6 +37,7 @@ def steady_state_starts(ts, cpts):
 
     return 0
 
+
 def _classify_benchmark(forks):
     if STEADY_STATE not in forks:
         return NO_STEADY_STATE
@@ -46,7 +49,11 @@ def _classify_benchmark(forks):
 
 def classify_fork(ts, cpts):
     steady_state_starts_at = steady_state_starts(ts, cpts)
-    classification = STEADY_STATE if steady_state_starts_at <= 2499 else NO_STEADY_STATE
+    if steady_state_starts_at <= 2499:
+        classification = STEADY_STATE
+    else:
+        classification = NO_STEADY_STATE
+        steady_state_starts_at = -1
     return classification, steady_state_starts_at
 
 
@@ -62,7 +69,7 @@ def classify_benchmark(ts_list, cpts_list):
     return {"run": classification, "forks": forks, "steady_state_starts": steady_state_starts_at}
 
 
-if __name__ == '__main__':
+def classify_runs():
     root_dir = './data'
     measurements_dir = '{}/timeseries/all'.format(root_dir)
     changepoints_dir = '{}/changepoints'.format(root_dir)
@@ -85,3 +92,7 @@ if __name__ == '__main__':
             write(classification, classification_path)
         else:
             print('Skipped: {} already exists'.format(classification_path))
+
+
+if __name__ == '__main__':
+    classify_runs()
