@@ -14,14 +14,14 @@ pip install -r requirements.txt
 ```
 
 ### Microbenchmarks
-The complete list of the benchmarks considered in our empirical study is available in `data/subjects.csv`.
-Each row reports, for a particular benchmark, the following information: the benchmark signature (i.e., the name of the JMH benchmark method), the name of the Java system, the parameterization used during execution, and the JMH configuration defined by software developers.
+The complete list of benchmarks considered in our empirical study is available in `data/subjects.csv`.
+Each row reports (for a particular benchmark): the benchmark signature (i.e., the name of the JMH benchmark method), the Java system, the parameterization used in our experiments, and the JMH configuration defined by software developers.
 In particular, each JMH configuration is constituted by: *warmup iteration time* (w), *measurement iteration time* (r), *warmup iterations* (wi), *measurement iterations* (i), and *forks* (f).
 
 
 ### Performance measurements
 We keep performance measurements used in our empirical study in a [separate repository](https://doi.org/10.5281/zenodo.5961018).
-In order to replicate our results, the dataset (i.e., `jmh.tar.gz`) must be first downloaded from the [repo](https://doi.org/10.5281/zenodo.5961018), and then unpacked in the `data` folder as follows:
+In order to replicate our results, the dataset (i.e., `jmh.tar.gz`) must be downloaded from the [repo](https://doi.org/10.5281/zenodo.5961018), and unpacked in the `data` folder as follows:
 
 <pre><code>tar -zxvf <i>path</i>/jmh.tar.gz -C data</code></pre>
 
@@ -39,7 +39,7 @@ python steadystate.py
 Results of steady state analysis can be found in the `data/classification` folder.
 Each json file in the folder reports whether (and when) a given benchmark reaches a steady state of performance.
 Specifically, the file reports the classification of each benchmark (<i>steady state</i>, <i>no steady state</i> or <i>inconsistent</i>) and fork (<i>steady state</i> or <i>no steady state</i>), and the JMH iterations in which the steady state is reached (-1 indicates <i>no steady state</i>).<br> 
-The set of changepoints found by the PELT algorithm are reported in the `data/changepoints` folder.
+The set of changepoints found by the PELT algorithm is reported in the `data/changepoints` folder.
 
 ### Developer configurations
 The following command maps the JMH configurations defined by software developers to our performance data.
@@ -59,7 +59,7 @@ Similarly to developer configurations, the script identifies, for each fork, the
 Results are stored in the `data/dynconfig` folder, and are later used to derive the estimated warmup time ( <i>wt</i> ) and the set of performance measurements identified by dynamic reconfiguration techniques ( <i>M <sup>conf</sup></i> ).</br>
 
 ## Developer/dynamic configurations analysis
-The following command computes for each fork and developer/dynamic configuration the information needed to compute (i) the <i>Warmup Estimation Error</i>, (ii) the <i>time waste</i>, (iii) the <i>estimated warmup time</i>  and (iv) the Absolute Relative Performance Change.<br>
+The following command computes for each fork and developer/dynamic configuration the information needed to compute (i) the <i>Warmup Estimation Error</i>, (ii) the <i>time waste</i> and (iii) the Absolute Relative Performance Change.<br>
 Results are stored in `data/cfg_assessment.csv` file.
 ```
 python configuration_analysis.py
