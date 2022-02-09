@@ -51,7 +51,7 @@ python create_devconfigs.py
 
 ### Dynamic reconfiguration
 In order to run dynamic reconfiguration techniques, the [replication package](https://doi.org/10.6084/m9.figshare.11944875) of Laaber et al. must be first downloaded and configured (following the instructions in the `README.md` file). Then, the environment variable `$REPLICATIONPACKAGE_PATH` must be set with the path of the replication package folder.<br>
-The following command performs JMH reconfiguration using the [replication package](https://doi.org/10.6084/m9.figshare.11944875) of Laaber et al.
+The following command performs JMH reconfiguration.
 ```
 bash create_dynconfigs.py
 ```
