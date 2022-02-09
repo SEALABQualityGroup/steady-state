@@ -15,8 +15,8 @@ pip install -r requirements.txt
 
 ### Microbenchmarks
 The complete list of the benchmarks considered in our empirical study is available in `data/subjects.csv`.
-Each row of the csv file reports the benchmark signature (i.e., the name of the JMH benchmark method), the system the benchmark belongs to, the parameterization used during execution, and the JMH configuration defined by software developers.
-Each JMH configuration is constituted by: *warmup iteration time* (w), *measurement iteration time* (r), *warmup iterations* (wi), *measurement iterations* (i), and *forks* (f).
+Each row reports, for a particular benchmark, the following information: the benchmark signature (i.e., the name of the JMH benchmark method), the name of the Java system, the parameterization used during execution, and the JMH configuration defined by software developers.
+In particular, each JMH configuration is constituted by: *warmup iteration time* (w), *measurement iteration time* (r), *warmup iterations* (wi), *measurement iterations* (i), and *forks* (f).
 
 
 ### Performance measurements
@@ -36,6 +36,56 @@ Steady state analysis can be performed through the following command:
 ```
 python steadystate.py
 ```
-Results can be found in the `data/classification` folder.
+Results of steady state analysis can be found in the `data/classification` folder.
 Each json file in the folder reports whether (and when) a given benchmark reaches a steady state of performance.
-Specifically, the file reports the classification of each benchmark (<i>steady state</i>, <i>no steady state</i> or <i>inconsistent</i>) and fork (<i>steady state</i> or <i>no steady state</i>), and the JMH iterations in which steady states are reached (-1 indicates <i>no steady state</i>).
+Specifically, the file reports the classification of each benchmark (<i>steady state</i>, <i>no steady state</i> or <i>inconsistent</i>) and fork (<i>steady state</i> or <i>no steady state</i>), and the JMH iterations in which the steady state is reached (-1 indicates <i>no steady state</i>).
+
+### Developer configurations
+The following command maps the JMH configurations defined by software developers to our performance data.
+In particular, it identifies for each fork the last warmup iteration and the last measurement iteration.
+Results are stored in the `data/devconfig` folder, and are later used to derive the estimated warmup time ( <i>wt</i> ) and the set of performance measurements considered by software developers ( <i>M <sup>conf</sup></i> ).
+```
+python create_devconfigs.py
+```
+
+### Dynamic reconfiguration
+In order to run dynamic reconfiguration techniques, the [replication package](https://doi.org/10.6084/m9.figshare.11944875) of Laaber et al. must be first downloaded and configured (following the instructions in the `README.md` file). Then, the environment variable `$REPLICATIONPACKAGE_PATH` must be set with the path of the replication package folder.<br>
+The following command performs JMH reconfiguration using the [replication package](https://doi.org/10.6084/m9.figshare.11944875) of Laaber et al.
+```
+bash create_dynconfigs.py
+```
+Similarly to developer configurations, the script identifies, for each fork, the last warmup iteration and the last measurement iteration.
+Results are stored in the `data/dynconfig` folder, and are later used to derive the estimated warmup time ( <i>wt</i> ) and the set of performance measurements identified by dynamic reconfiguration techniques ( <i>M <sup>conf</sup></i> ).</br>
+
+## Developer/dynamic configurations analysis
+The following command computes for each fork and developer/dynamic configuration the information needed to answer our research questions: i.e. the Warmup Estimation Error and the Absolute Relative Performance Change.
+Results are stored in `data/cfg_assessment.csv` file.
+```
+python configurations_assessment.py
+```
+
+### RQ<sub>1</sub> - Steady state evaluation
+The following command generates Figures 4a and 4b, i.e., forks and benchmark classifications.
+```
+python analysis/rq1.py
+```
+The following command generates Figure 5, i.e., percentages of no steady state forks within each benchmark.
+```
+python analysis/rq1_within_benchmark.py
+```
+
+(In order to run both `rq1.py`and `rq1_within_benchmark.py`, you should first run `steadystate.py`)
+
+### RQ<sub>2</sub> and RQ<sub>3</sub> - Developer/Dynamic configurations assessment
+The following command generates Figures 6, 7, 8, 9, i.e., plots for developer configuration assessment  and dynamic reconfiguration assessment.
+```
+python analysis/rq2_rq3.py
+```
+(Note that you should first run `steadystate.py`, `create_devconfigs.py`, `bash create_dynconfigs.py` and `configurations_assessment.py`)
+
+### RQ<sub>4</sub> - Dynamic <i>vs</i> Developer configurations 
+The following command generates Figures 10, 11 and 12 ( i.e., summaries of WEE/wt/ARPC comparisons), and Tables 2, 3 and 4 (i.e., detailed results of WEE/wt/ARPC comparisons).
+```
+python analysis/rq4.py
+```
+(Note that you should first run `steadystate.py`, `create_devconfigs.py`, `bash create_dynconfigs.py` and `configurations_assessment.py`)
