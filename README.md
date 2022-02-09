@@ -61,7 +61,7 @@ Results are stored in the `data/dynconfig` folder, and are later used to derive 
 The following command computes for each fork and developer/dynamic configuration the information needed to answer our research questions: i.e. the Warmup Estimation Error and the Absolute Relative Performance Change.
 Results are stored in `data/cfg_assessment.csv` file.
 ```
-python configurations_assessment.py
+python configuration_analysis.py
 ```
 
 ### RQ<sub>1</sub> - Steady state evaluation
