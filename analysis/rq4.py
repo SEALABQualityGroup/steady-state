@@ -7,8 +7,8 @@ from matplotlib.patches import Rectangle
 from scipy.stats import wilcoxon, rankdata
 import os
 
-FIGURE_DIR = '../figures'
-TABLE_DIR = '../tables'
+FIGURE_DIR = './figures'
+TABLE_DIR = './tables'
 
 for dir_ in [FIGURE_DIR, TABLE_DIR]:
     if not os.path.exists(dir_):
@@ -187,7 +187,7 @@ def write_summary_results(results, score):
 
 
 if __name__ == '__main__':
-    df = pd.read_csv('../data/cfg_assessment.csv')
+    df = pd.read_csv('./data/cfg_assessment.csv')
     df['project'] = df.benchmark.map(lambda b: b.split('#')[0].split('__')[1])
 
     results = create_results(df)
