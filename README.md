@@ -53,7 +53,7 @@ python create_devconfigs.py
 In order to run dynamic reconfiguration techniques, the [replication package](https://doi.org/10.6084/m9.figshare.11944875) of Laaber et al. must be first downloaded and configured (following the instructions in the `README.md` file). Then, the environment variable `$REPLICATIONPACKAGE_PATH` must be set with the path of the replication package folder.<br>
 The following command performs JMH reconfiguration.
 ```
-bash create_dynconfigs.py
+bash create_dynconfigs.sh
 ```
 Similarly to developer configurations, the script identifies, for each fork, the last warmup iteration and the last measurement iteration.
 Results are stored in the `data/dynconfig` folder, and are later used to derive the estimated warmup time ( <i>wt</i> ) and the set of performance measurements identified by dynamic reconfiguration techniques ( <i>M <sup>conf</sup></i> ).</br>
