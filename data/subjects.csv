@@ -469,7 +469,7 @@ prestodb/presto,com.facebook.presto.util.PagesSortBenchmark.runPagesMergeSortBen
 prestodb/presto,com.facebook.presto.operator.BenchmarkBlockFlattener.benchmarkWithFlatten,blockSize=10000&nestedLevel=4&numberOfIterations=1&reuseArrays=true,500 ms,500 ms,10,10,3,0.5,0.5,5.0,5.0,10.0,30.0
 prestodb/presto,com.facebook.presto.operator.BenchmarkBlockFlattener.benchmarkWithFlatten,blockSize=1000&nestedLevel=4&numberOfIterations=10&reuseArrays=true,500 ms,500 ms,10,10,3,0.5,0.5,5.0,5.0,10.0,30.0
 prestodb/presto,com.facebook.presto.operator.BenchmarkGroupByHash.addPagePreCompute,channelCount=10&dataType=BIGINT&groupByType=notDistinct&groupCount=3000000&hashEnabled=false,500 ms,500 ms,10,10,2,0.5,0.5,5.0,5.0,10.0,20.0
-prestodb/presto,com.facebook.presto.operator.BenchmarkUnnestOperator.unnest,nestedType=array\(bigint\)\|array\(bigint\)&positionsPerPage=1000&primitiveNullsRatio=0.2&replicateType=bigint&rowNullsRatio=0.0&withOrdinality=false,1000 ms,1000 ms,8,8,3,1.0,1.0,8.0,8.0,16.0,48.0
+prestodb/presto,com.facebook.presto.operator.BenchmarkUnnestOperator.unnest,nestedType=array(bigint)|array(bigint)&positionsPerPage=1000&primitiveNullsRatio=0.2&replicateType=bigint&rowNullsRatio=0.0&withOrdinality=false,1000 ms,1000 ms,8,8,3,1.0,1.0,8.0,8.0,16.0,48.0
 prestodb/presto,com.facebook.presto.geospatial.serde.BenchmarkJtsGeometrySerde.serializeSimpleMultiLineString,,3 s,4 s,3,5,2,3.0,4.0,9.0,20.0,29.0,58.0
 prestodb/presto,com.facebook.presto.BenchmarkBoxedBoolean.primitive,,1 s,1 s,10,10,3,1.0,1.0,10.0,10.0,20.0,60.0
 prestodb/presto,com.facebook.presto.sql.gen.InCodeGeneratorBenchmark.benchmark,inListCount=25&type=double,500 ms,500 ms,10,10,10,0.5,0.5,5.0,5.0,10.0,100.0
