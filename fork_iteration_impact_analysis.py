@@ -81,11 +81,11 @@ def fork_impact_2():
 
 ### Main
 if __name__ == '__main__':
-    # res_iteration_impact = iteration_impact()
-    # res_iteration_impact.to_csv('./data/iteration-impact.csv', index=False)
-    #
-    # res_fork_impact = fork_impact()
-    # res_fork_impact.to_csv('./data/fork-impact.csv', index=False)
+    res_iteration_impact = iteration_impact()
+    res_iteration_impact.to_csv('./data/iteration-impact.csv', index=False)
+
+    res_fork_impact = fork_impact()
+    res_fork_impact.to_csv('./data/fork-impact.csv', index=False)
 
     res_fork_impact = fork_impact_2()
     res_fork_impact.to_csv('./data/fork-impact-2.csv', index=False)
