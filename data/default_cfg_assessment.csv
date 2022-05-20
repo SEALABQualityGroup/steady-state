@@ -1,0 +1,2 @@
+,benchmark,fork,ci
+0,HdrHistogram__HdrHistogram#bench.HdrHistogramEncodingBench.skinnyEncodeIntoCompressedByteBuffer#latencySeriesName=sparsed1&numberOfSignificantValueDigits=3,0,"(0.6099585083897059, 1.4274872282681663)"

@@ -46,13 +46,15 @@ def _count_iterations(fork, iteration_time, num_iterations):
 def _compute(timeseries, wt, wi, mt, mi):
     res = []
     for fork in timeseries:
-        warmup_iterations = _count_iterations(fork, wt, wi)
-        measurement_iterations = _count_iterations(fork[warmup_iterations:], mt, mi)
-        res.append([warmup_iterations - 1,
-                    warmup_iterations + measurement_iterations - 1])
+        cfg = estimate_iterations(fork, wt, wi, mt, mi)
+        res.append(cfg)
 
     return res
 
+def estimate_iterations(fork,  wt, wi, mt, mi):
+    warmup_iterations = _count_iterations(fork, wt, wi)
+    measurement_iterations = _count_iterations(fork[warmup_iterations:], mt, mi)
+    return [warmup_iterations - 1, warmup_iterations + measurement_iterations - 1]
 
 def compute_config(path, out_filename):
     project, benchmark, params = _parse(path)

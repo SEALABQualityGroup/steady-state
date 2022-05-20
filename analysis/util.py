@@ -1,6 +1,10 @@
 from operator import itemgetter
 import random
 
+
+def count(hist):
+    return sum(map(itemgetter(1), hist))
+
 def median(hist):
     tot = sum(map(itemgetter(1), hist))
     count = 0
@@ -18,6 +22,20 @@ def mean(hist):
         sum_ += value*occurences
         num += occurences
     return sum_/num
+
+def std(hist, mu):
+    num = 0
+    sum_ = 0
+    for value, occurences in hist:
+        sum_ += ((value-mu)**2) * occurences
+        num += occurences
+    return (sum_/num)**0.5
+
+def cov(hist):
+    mu = mean(hist)
+    sigma = std(hist, mu)
+
+    return sigma/mu
 
 def rand(hist):
     seq = list(map(itemgetter(0), hist))

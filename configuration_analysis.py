@@ -47,7 +47,7 @@ def compute_interval(ts, cfg, steady_state_starts):
     last_warmup_it, last_measure_it = cfg
     dev = ts[last_warmup_it + 1: last_measure_it + 1]
     stable = ts[steady_state_starts + 1:]
-    return kalibera.interval(dev, stable)
+    return kalibera.interval_fork(dev, stable)
 
 
 if __name__ == '__main__':
