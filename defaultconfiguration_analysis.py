@@ -5,6 +5,7 @@ import pandas as pd
 
 import kalibera
 from util import foreach_benchmark
+from configuration_analysis import estimate_time
 
 
 def load_config(benchmark):
@@ -14,10 +15,21 @@ def load_config(benchmark):
         return json.load(f)
 
 
-def compute_interval(bench_fork_meas_stable):
-    b, i, measurements, stable = bench_fork_meas_stable
+def process(bench_fork_ts_s_cfg):
+    b, i, ts, s, (last_warmup_it, last_measure_it) = bench_fork_ts_s_cfg
     print("Running fork {} of {}".format(b, i))
-    return b, i, kalibera.interval_fork(measurements, stable)
+
+    # Computing confidence interval
+    measurements = ts[last_warmup_it+1: last_measure_it+1]
+    stable = ts[s+1:]
+    ci = kalibera.interval_fork(measurements, stable)
+
+    # Computing (non-absolute) warmup estimation error
+    warmup_time = estimate_time(ts[:last_warmup_it + 1])
+    steady_state_time = estimate_time(ts[:s + 1])
+    wee = warmup_time - steady_state_time
+
+    return b, i, ci, wee
 
 
 def foreach_steady_fork():
@@ -27,15 +39,11 @@ def foreach_steady_fork():
         cfg = load_config(b)
         for i, ts in enumerate(timeseries):
             if classes[i] == 'steady state':
-                s = steady_state_starts[i]
-                last_warmup_it, last_measure_it = cfg[i]
-                measurements = ts[last_warmup_it + 1: last_measure_it + 1]
-                stable = ts[s + 1:]
-                yield b, i, stable, measurements
+                yield b, i, ts, steady_state_starts[i], cfg[i]
 
 
 if __name__ == '__main__':
     with Pool() as pool:
-        results = pool.map(compute_interval, foreach_steady_fork())
-        df = pd.DataFrame(results, columns=['benchmark', 'fork', 'ci'])
+        results = pool.map(process, foreach_steady_fork())
+        df = pd.DataFrame(results, columns=['benchmark', 'fork', 'ci', 'timewaste'])
         df.to_csv('./data/default_cfg_assessment.csv', index=False)
