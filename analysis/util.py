@@ -55,3 +55,10 @@ def tosec(value, scoreunit):
 
 def overlap(ci1, ci2):
     return not (ci1[1] < ci2[0] or ci1[0] > ci2[1])
+
+def arpc(ci):
+    lb, ub = ci
+    if lb <= 1 <= ub:
+        return 0
+    center = (lb + ub)/2
+    return abs(center - 1)
