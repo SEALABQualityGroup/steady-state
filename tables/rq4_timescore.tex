@@ -1,0 +1,38 @@
+\begin{tabular}{llll}
+\toprule
+technique &                                                          Cov &                                                            Ci &                                                    Divergence \\
+project             &                                                              &                                                               &                                                               \\
+\midrule
+arrow               &  \textbf{$<$0.001(0.95)}\tiny{$^{^{***}}$} &  \textbf{0.003(0.86)}\tiny{$^{^{***}}$} &  \textbf{$<$0.001(0.92)}\tiny{$^{^{***}}$} \\
+byte-buddy          &  0.321(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  \textbf{$<$0.001(0.64)}\tiny{$^{^{*\textcolor{white}{**}}}$} &  \textbf{0.01(0.8)}\tiny{$^{^{***}}$} \\
+camel               &  0.25(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  0.264(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  \textbf{$<$0.001(0.86)}\tiny{$^{^{***}}$} \\
+cantaloupe          &  $<$0.001(0.46)\tiny{$^{^{\textcolor{white}{***}}}$} &  $<$0.001(0.36)\tiny{$^{^{*\textcolor{white}{**}}}$} &  $<$0.001(0.36)\tiny{$^{^{*\textcolor{white}{**}}}$} \\
+client_java         &  \textbf{0.019(0.88)}\tiny{$^{^{***}}$} &  \textbf{0.01(0.66)}\tiny{$^{^{**\textcolor{white}{*}}}$} &  0.154(-)\tiny{$^{^{\textcolor{white}{***}}}$} \\
+crate               &  0.405(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  0.097(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  0.063(-)\tiny{$^{^{\textcolor{white}{***}}}$} \\
+eclipse-collections &  \textbf{0.007(0.85)}\tiny{$^{^{***}}$} &  0.163(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  0.43(-)\tiny{$^{^{\textcolor{white}{***}}}$} \\
+h2o-3               &  \textbf{0.025(0.86)}\tiny{$^{^{***}}$} &  0.321(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  \textbf{0.003(0.79)}\tiny{$^{^{***}}$} \\
+hazelcast           &  \textbf{0.014(0.73)}\tiny{$^{^{***}}$} &  0.147(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  0.527(-)\tiny{$^{^{\textcolor{white}{***}}}$} \\
+HdrHistogram        &  \textbf{0.023(0.65)}\tiny{$^{^{**\textcolor{white}{*}}}$} &  0.282(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  0.346(-)\tiny{$^{^{\textcolor{white}{***}}}$} \\
+hive                &  $<$0.001(0.38)\tiny{$^{^{*\textcolor{white}{**}}}$} &  $<$0.001(0.36)\tiny{$^{^{*\textcolor{white}{**}}}$} &  $<$0.001(0.33)\tiny{$^{^{**\textcolor{white}{*}}}$} \\
+imglib2             &  0.094(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  0.279(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  0.225(-)\tiny{$^{^{\textcolor{white}{***}}}$} \\
+JCTools             &  \textbf{$<$0.001(0.7)}\tiny{$^{^{**\textcolor{white}{*}}}$} &  0.719(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  \textbf{$<$0.001(0.65)}\tiny{$^{^{**\textcolor{white}{*}}}$} \\
+jdbi                &  0.091(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  0.136(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  0.052(-)\tiny{$^{^{\textcolor{white}{***}}}$} \\
+jetty.project       &  0.867(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  0.265(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  0.357(-)\tiny{$^{^{\textcolor{white}{***}}}$} \\
+jgrapht             &  0.261(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  0.492(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  \textbf{$<$0.001(0.77)}\tiny{$^{^{***}}$} \\
+kafka               &  \textbf{0.019(0.82)}\tiny{$^{^{***}}$} &  0.655(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  0.225(-)\tiny{$^{^{\textcolor{white}{***}}}$} \\
+logbook             &  \textbf{0.002(0.89)}\tiny{$^{^{***}}$} &  \textbf{$<$0.001(0.67)}\tiny{$^{^{**\textcolor{white}{*}}}$} &  \textbf{0.001(0.84)}\tiny{$^{^{***}}$} \\
+logging-log4j2      &  \textbf{$<$0.001(0.89)}\tiny{$^{^{***}}$} &  0.304(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  \textbf{$<$0.001(0.86)}\tiny{$^{^{***}}$} \\
+netty               &  \textbf{$<$0.001(0.86)}\tiny{$^{^{***}}$} &  \textbf{$<$0.001(0.77)}\tiny{$^{^{***}}$} &  \textbf{$<$0.001(0.84)}\tiny{$^{^{***}}$} \\
+presto              &  0.181(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  \textbf{$<$0.001(0.59)}\tiny{$^{^{*\textcolor{white}{**}}}$} &  \textbf{$<$0.001(0.56)}\tiny{$^{^{\textcolor{white}{***}}}$} \\
+protostuff          &  0.14(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  0.645(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  0.294(-)\tiny{$^{^{\textcolor{white}{***}}}$} \\
+r2dbc-h2            &  \textbf{$<$0.001(0.72)}\tiny{$^{^{***}}$} &  \textbf{$<$0.001(0.63)}\tiny{$^{^{*\textcolor{white}{**}}}$} &  0.988(-)\tiny{$^{^{\textcolor{white}{***}}}$} \\
+rdf4j               &  0.361(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  0.076(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  0.534(-)\tiny{$^{^{\textcolor{white}{***}}}$} \\
+RoaringBitmap       &  \textbf{$<$0.001(0.93)}\tiny{$^{^{***}}$} &  0.204(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  \textbf{$<$0.001(0.88)}\tiny{$^{^{***}}$} \\
+RxJava              &  \textbf{0.034(0.91)}\tiny{$^{^{***}}$} &  \textbf{0.002(0.87)}\tiny{$^{^{***}}$} &  \textbf{$<$0.001(0.86)}\tiny{$^{^{***}}$} \\
+SquidLib            &  \textbf{0.001(0.79)}\tiny{$^{^{***}}$} &  \textbf{0.009(0.74)}\tiny{$^{^{***}}$} &  \textbf{0.01(0.77)}\tiny{$^{^{***}}$} \\
+tinkerpop           &  0.215(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  0.131(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  0.803(-)\tiny{$^{^{\textcolor{white}{***}}}$} \\
+vert.x              &  0.7(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  \textbf{$<$0.001(0.57)}\tiny{$^{^{*\textcolor{white}{**}}}$} &  0.355(-)\tiny{$^{^{\textcolor{white}{***}}}$} \\
+zipkin              &  0.53(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  0.064(-)\tiny{$^{^{\textcolor{white}{***}}}$} &  0.372(-)\tiny{$^{^{\textcolor{white}{***}}}$} \\
+Total               &  \textbf{0.047(0.79)}\tiny{$^{^{***}}$} &  \textbf{$<$0.001(0.68)}\tiny{$^{^{**\textcolor{white}{*}}}$} &  \textbf{$<$0.001(0.74)}\tiny{$^{^{***}}$} \\
+\bottomrule
+\end{tabular}

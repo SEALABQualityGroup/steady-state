@@ -11,11 +11,18 @@ def load_dataframe(filename):
     return df
 
 
-def iteration_analysis(filename):
+def iteration_analysis(filename, stats=False):
     df = load_dataframe('../data/iteration-impact.csv')
-    print(df.groupby('iteration').agg({'arpc':['mean', 'median']}))
 
-    fig, axs = plt.subplots(2, 2, figsize=(15, 8))
+    if stats:
+        g = df.groupby('iteration').agg({'arpc': ['mean', 'median']}).reset_index()
+        print(g)
+        g = g[g['iteration']>=300]
+
+        print("Mean ARPC - min={}, max={}".format(g['arpc']['mean'].min(), g['arpc']['mean'].max()))
+        print("Median ARPC - min={}, max={}".format(g['arpc']['median'].min(), g['arpc']['median'].max()))
+
+    fig, axs = plt.subplots(2, 2, figsize=(11, 8))
 
     sns.lineplot(data=df, x='iteration', y='arpc', ax=axs[0, 0], color='gray')
     sns.lineplot(data=df, x='iteration', y='arpc', estimator=np.median, ax=axs[0, 1], color='gray')
@@ -40,10 +47,13 @@ def iteration_analysis(filename):
     plt.savefig(filename)
 
 
-def fork_analysis(filename):
+def fork_analysis(filename, stats=False):
     df = load_dataframe('../data/fork-impact.csv')
     df['fork'] += 1
-    fig, axs = plt.subplots(1,2, figsize=(15, 4))
+    fig, axs = plt.subplots(1,2, figsize=(11, 4))
+
+    if stats:
+        print(df.groupby('fork').agg({'arpc':['mean', 'median']}))
 
     sns.lineplot(data=df, x='fork', y='arpc', ax=axs[0], color='gray')
     sns.lineplot(data=df, x='fork', y='arpc', estimator=np.median, ax=axs[1], color='gray')
@@ -59,5 +69,6 @@ def fork_analysis(filename):
     plt.savefig(filename)
 
 if __name__ == '__main__':
+    sns.set(font_scale=1.1, style='white')
     iteration_analysis('../figures/iteration-impact.pdf')
-    fork_analysis('../figures/fork-impact.pdf')
+    fork_analysis('../figures/fork-impact.pdf', stats=True)

@@ -47,11 +47,15 @@ if __name__ == '__main__':
     prepare(dev_data)
     prepare(default_data)
     
-    for score in ['WEE', 'ARPC', 'wt']:
+    for score in ['WEE']: #, 'ARPC', 'wt']:
         # Developer configurations perform better than default configurations if p<0.05 and  A > 0.5
         p, A = compare(default_data, dev_data, score)
         print('Metric:', score)
         print("p-value={}, A={}, interpretation={}\n".format(p, A, interpret(A)))
+        print('\nDefaults stats:')
+        print(default_data['WEE'].describe())
+        print('\nDevs stats:')
+        print(dev_data['WEE'].describe())
 
 
 

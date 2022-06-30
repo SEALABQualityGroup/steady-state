@@ -7,6 +7,8 @@ from matplotlib.patches import Rectangle
 from scipy.stats import wilcoxon, rankdata
 import os
 
+from util import arpc
+
 FIGURE_DIR = '../figures'
 TABLE_DIR = '../tables'
 
@@ -36,9 +38,9 @@ def a12(treatment, control):
 def create_transf_frame(df, techniques):
     df_trasf = df.copy()
     ## apply transformation
-    for t in techniques + ['Dev']:
-        df_trasf['timescore'][t] = df_trasf['timescore'][t].map(lambda x: x if x >= 5 else 0)
-        df_trasf['perfscore'][t] = df_trasf['perfscore'][t].map(lambda x: x if x >= 0.05 else 0.0)
+    # for t in techniques + ['Dev']:
+    #     df_trasf['timescore'][t] = df_trasf['timescore'][t].map(lambda x: x if x >= 5 else 0)
+    #     df_trasf['perfscore'][t] = df_trasf['perfscore'][t].map(lambda x: x if x >= 0.05 else 0.0)
     return df_trasf
 
 def interpret(A):
@@ -80,15 +82,13 @@ def create_value(row):
 
 def create_frame(df):
     techniques = ['Cov', 'Ci', 'Divergence']
-    df = df[df.classification == 'steady state']
+    #df = df[df.classification == 'steady state']
 
-    df['timescore'] = abs(df.timewaste)
-    df['perfscore'] = df.interval.map(eval).map(perfscore)
-    df['wt'] = df.timewaste
+    df['arpc'] = df.ci.map(eval).map(arpc)
 
-    scores = ['timescore', 'perfscore', 'wt']
+    scores = ['arpc', 'exectime']
 
-    df = df.pivot(['benchmark', 'fork'], columns='technique', values=scores)
+    df = df.pivot(['benchmark'], columns='technique', values=scores)
     df_trasf = create_transf_frame(df, techniques)
 
     rows = []
@@ -123,7 +123,7 @@ def create_results(df):
     res['project'] = 'Total'
     results = results.append(res, ignore_index=True)
 
-    results['value'] = results.apply(create_value, axis=1)
+    #results['value'] = results.apply(create_value, axis=1)
     results['value'] = results.apply(create_value_latex, axis=1)
 
     results['ES'] = results.apply(lambda row: interpret(row['A']) if row['p-value'] <= 0.05 else '-', axis=1)
@@ -136,7 +136,7 @@ def write_detailed_results(results, score):
     index.append('Total')
     results_ = results_.reindex(index)
 
-    results_[['Cov', 'Ci', 'Divergence']].to_csv('./{}/rq4_{}.csv'.format(TABLE_DIR, score))
+    #results_[['Cov', 'Ci', 'Divergence']].to_csv('./{}/wholeconfig_{}.csv'.format(TABLE_DIR, score))
     results_[['Cov', 'Ci', 'Divergence']].to_latex('{}/rq4_{}.tex'.format(TABLE_DIR, score), escape=False)
 
 def write_summary_results(results, score):
@@ -152,12 +152,11 @@ def write_summary_results(results, score):
     for t in techniques:
         row = []
         for es in effect_sizes[::-1]:
-            count = results_[(results_.technique == t) & (results_.ES == es) & (results_.A < 0.5) & (results_.project != 'Total')].shape[0]
+            count = results_[(results_.technique == t) & (results_.ES == es) & (results_.A < 0.5)].shape[0]
             row.append(count) #/ results_[(results_.technique == t)].shape[0])
 
         for es in effect_sizes:
-            count = results_[(results_.technique == t) & (results_.ES == es) & (results_.A >= 0.5) & (results_.project != 'Total')].shape[0]
-            print(score, t, es, count)
+            count = results_[(results_.technique == t) & (results_.ES == es) & (results_.A >= 0.5)].shape[0]
             row.append(count) #/ results_[(results_.technique == t)].shape[0])
 
         rows.append(row)
@@ -184,14 +183,16 @@ def write_summary_results(results, score):
 
     plt.xlabel('Vargha-Delanay\'s $\hat{A}_{12}$', labelpad=35)
     plt.tight_layout()
-    plt.savefig('./{}/rq4_{}.pdf'.format(FIGURE_DIR, score))
+    plt.savefig('./{}/wholeconfig_{}.pdf'.format(FIGURE_DIR, score))
 
 
 if __name__ == '__main__':
-    df = pd.read_csv('../data/cfg_assessment.csv')
+    df = pd.read_csv('../data/whole_cfg_assessment.csv')
     df['project'] = df.benchmark.map(lambda b: b.split('#')[0].split('__')[1])
 
     results = create_results(df)
+
+    print(results)
 
     for score in results.score.unique():
         write_detailed_results(results, score)
