@@ -77,10 +77,10 @@ python analysis/rq1_within_benchmark.py
 
 (In order to run both `rq1.py`and `rq1_within_benchmark.py`, you should first run `steadystate.py`)
 
-### RQ<sub>2</sub> and RQ<sub>3</sub> - Developer/Dynamic configurations assessment
-The following command generates Figures 6, 7, 8, 9, i.e., plots for developer configuration assessment  and dynamic reconfiguration assessment.
+### RQ<sub>3</sub> and RQ<sub>4</sub> - Developer/Dynamic configurations assessment
+The following command generates plots for developer configuration assessment and dynamic reconfiguration assessment.
 ```
-python analysis/rq2_rq3.py
+python analysis/rq3_rq4.py
 ```
 (Note that you should first run `steadystate.py`, `create_devconfigs.py`, `bash create_dynconfigs.py` and `configurations_assessment.py`)
 

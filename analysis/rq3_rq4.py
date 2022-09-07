@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import os
 
-FIGURE_DIR = './figures'
+FIGURE_DIR = '../figures'
 
 if not os.path.exists(FIGURE_DIR):
     os.mkdir(FIGURE_DIR)
@@ -50,7 +50,7 @@ def change_height(ax, new_value):
 
 
 
-df = pd.read_csv('./data/cfg_assessment.csv')
+df = pd.read_csv('../data/cfg_assessment.csv')
 df = df[(df.classification == "steady state")]
 df["type"] = df.timewaste.apply(lambda x: "overestimated" if x >= 5 else "underestimated" if x <= -5 else "exact")
 df["time"] = abs(df.timewaste)
@@ -233,13 +233,13 @@ def viz_overestimation_effect(df, technique, filename):
 
 
 for technique in ['Dev', 'Cov', 'Ci', 'Divergence']:
-    viz_warmup_estimation(df, technique, "./{}/warmup_estimation_{}.pdf".format(FIGURE_DIR, technique))
+    viz_warmup_estimation(df, technique, "{}/warmup_estimation_{}.pdf".format(FIGURE_DIR, technique))
     viz_underestimation_effect(df[df.type == 'underestimated'],
                                technique,
-                               "./{}/underestimation_effect_{}.pdf".format(FIGURE_DIR, technique))
+                               "{}/underestimation_effect_{}.pdf".format(FIGURE_DIR, technique))
     viz_overestimation_effect(df[df.type == 'overestimated'],
                                technique,
-                               "./{}/overestimation_effect_{}.pdf".format(FIGURE_DIR, technique))
+                               "{}/overestimation_effect_{}.pdf".format(FIGURE_DIR, technique))
 
 
 
