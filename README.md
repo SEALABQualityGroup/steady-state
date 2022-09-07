@@ -77,6 +77,14 @@ python analysis/rq1_within_benchmark.py
 
 (In order to run both `rq1.py`and `rq1_within_benchmark.py`, you should first run `steadystate.py`)
 
+
+### RQ<sub>2</sub> - Steady state impact
+The following command generates tables and plots for steady state impact analysis (e.g., Figures 12, 13, 14 and 15).
+```
+python analysis/rq2.py
+```
+(Note that you should first run `steadystate_impact_analysis.py` and `fork_iteration_impact_analysis.py`)
+
 ### RQ<sub>3</sub> and RQ<sub>4</sub> - Developer/Dynamic configurations assessment
 The following command generates plots for developer configuration assessment and dynamic reconfiguration assessment.
 ```

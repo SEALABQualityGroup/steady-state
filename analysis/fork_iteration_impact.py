@@ -16,7 +16,6 @@ def iteration_analysis(filename, stats=False):
 
     if stats:
         g = df.groupby('iteration').agg({'arpc': ['mean', 'median']}).reset_index()
-        print(g)
         g = g[g['iteration']>=300]
 
         print("Mean ARPC - min={}, max={}".format(g['arpc']['mean'].min(), g['arpc']['mean'].max()))
@@ -68,7 +67,12 @@ def fork_analysis(filename, stats=False):
     plt.tight_layout()
     plt.savefig(filename)
 
-if __name__ == '__main__':
+
+def main():
     sns.set(font_scale=1.1, style='white')
     iteration_analysis('../figures/iteration-impact.pdf')
     fork_analysis('../figures/fork-impact.pdf', stats=True)
+
+
+if __name__ == '__main__':
+    main()

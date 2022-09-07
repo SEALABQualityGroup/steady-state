@@ -95,7 +95,9 @@ def across_fork_analysis():
     print("q3:", df['arpc'].quantile(0.75))
 
 
-
-if __name__ == '__main__':
+def main():
     within_fork_analysis()
     across_fork_analysis()
+
+if __name__ == '__main__':
+    main()
