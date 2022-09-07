@@ -8,8 +8,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import os
 
-CLASS_DIR = './data/classification'
-FIGURE_DIR = './figures'
+CLASS_DIR = '../data/classification'
+FIGURE_DIR = '../figures'
 
 if not os.path.exists(FIGURE_DIR):
     os.mkdir(FIGURE_DIR)
