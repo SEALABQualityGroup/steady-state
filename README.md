@@ -84,9 +84,9 @@ python analysis/rq3_rq4.py
 ```
 (Note that you should first run `steadystate.py`, `create_devconfigs.py`, `bash create_dynconfigs.py` and `configurations_assessment.py`)
 
-### RQ<sub>4</sub> - Dynamic <i>vs</i> Developer configurations 
-The following command generates Figures 10, 11 and 12 ( i.e., summaries of WEE/wt/ARPC comparisons), and Tables 2, 3 and 4 (i.e., detailed results of WEE/wt/ARPC comparisons).
+### RQ<sub>5</sub> - Dynamic <i>vs</i> Developer configurations 
+The following command generates Figures 24, 25 and 26 ( i.e., summaries of WEE/wt/RPD comparisons), and Tables 4, 5 and 6 (i.e., detailed results of WEE/wt/RPD comparisons).
 ```
-python analysis/rq4.py
+python analysis/rq5.py
 ```
 (Note that you should first run `steadystate.py`, `create_devconfigs.py`, `bash create_dynconfigs.py` and `configurations_assessment.py`)

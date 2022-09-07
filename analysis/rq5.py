@@ -157,7 +157,6 @@ def write_summary_results(results, score):
 
         for es in effect_sizes:
             count = results_[(results_.technique == t) & (results_.ES == es) & (results_.A >= 0.5) & (results_.project != 'Total')].shape[0]
-            print(score, t, es, count)
             row.append(count) #/ results_[(results_.technique == t)].shape[0])
 
         rows.append(row)
